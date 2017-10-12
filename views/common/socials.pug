@@ -1,0 +1,8 @@
+include ../common/variables.pug
+
+ul.socials__list
+    each item in socialsItems
+        li.socials__item
+            a(href=`${item[1]}` class=`socials__link--${item[0]}`).socials__link
+                svg.socials__icon 
+                    use(xlink:href=`img/icons/symbol/sprite.svg#${item[2]}`)

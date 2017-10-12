@@ -1,0 +1,56 @@
+extends ../template
+
+block variables
+    include ../common/variables.pug
+
+block content
+    .wrapper
+        include ../common/header.pug
+        main.main.main--about
+            include ../common/hero.pug
+            svg.triangles.triangles--about(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 108" preserveaspectratio="none")
+                polygon.triangle__left(points="0,0 0,108 601,108 601,105")
+                polygon.triangle__right(points="1200,0 1200,108 599,108 599,105")
+            section.section.content.content--about
+                .about.js-about
+                    .about__content
+                        .title__wrapper
+                            h1.title.title--about Обо мне
+                            svg.title__bg.title__bg--about
+                                use(xlink:href="img/icons/symbol/sprite.svg#about_header")
+                        .about__details
+                            .about__photo
+                                img.about__img(src='img/content/My_image.jpg')
+                            h2.subtitle--about.subtitle Кто я
+                            span.about__text.text
+                                p Меня зовут Морозова Евгения. Я занимаюсь веб-разработкой — создаю сайты и помогаю хорошим компаниям развиваться, позиционировать себя и привлекать целевую аудиторию. В наше время сайт – это лицо и часть имиджа компании. И я за то, чтобы компании, создающие классные продукты и услуги имели достойный имидж, процветали и развивались. 
+                                p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Я люблю постоянно совершенствовать свои знания и навыки, создавать интересные технологичные современные сайты.
+                .skills
+                    .skills__content
+                        h2.subtitle.subtitle--skills Чем я могу быть вам полезна
+                        span.skills__text.text
+                            p Меня очень привлекет Frontend разработка, а также я могу решать некоторые задачи на Backend. Мои знания и навыки лучше всего охарактеризуют небольшие диагаммы ниже.
+                        ul.skills__list
+                            each item in skillsList
+                                li.skills__group 
+                                    .skills__group-title #{item.skillsGroup}
+                                    ul.skills__details
+                                        each skill in item.skills
+                                            li.skill 
+                                                svg.skill__circle.circle.js-circle(viewbox="0 0 110 110")
+                                                    circle.circle__first(r="45" cx="50%" cy="50%")
+                                                    circle.circle__second.js-circle__second(r="45" cx="50%" cy="50%" data-circle=`${skill[1]}`)
+                                                .skill__title #{skill[0]}
+            section.section.map
+                .map__img#map
+                .contacts
+                    h2.subtitle.subtitle--contacts Контакты
+                    ul.contacts__list
+                        each item in contactsList
+                            li.contacts__item(class=`contacts__item--${item.type}`) 
+                                svg.contacts__icon
+                                    use(xlink:href=`img/icons/symbol/sprite.svg#${item.svg}`)
+                                a.contacts__link(href=`${item.link}`) #{item.contact}
+        include ../common/footer.pug
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8yfmr5iCoJlQlgOHbQxy473Yb7sja91U&callback=initMap" async defer)
+

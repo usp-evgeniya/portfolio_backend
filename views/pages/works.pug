@@ -1,0 +1,73 @@
+extends ../template
+
+block variables
+    include ../common/variables.pug
+
+block content
+    .wrapper
+        include ../common/header.pug
+        main.main.main--works
+            include ../common/hero.pug
+            svg.triangles.triangles--works(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 108" preserveaspectratio="none")
+                polygon.triangle__left(points="0,0 0,108 601,108 601,105")
+                polygon.triangle__right(points="1200,0 1200,108 599,108 599,105")
+            section.section.works
+                .title__wrapper.title__wrapper--works
+                    h1.title.title--works Мои работы
+                    svg.title__bg.title__bg--works
+                        use(xlink:href="img/icons/symbol/sprite.svg#works_header")
+                ul.works__list.js-slider
+                    li.works__item
+                        .works__block
+                            .works__description
+                                h2.subtitle.subtitle--works.js-slide-subtitle
+                                .works__techs.js-slide-techs 
+                                a(href="").works__link.js-slide-link
+                                    svg.works__link-icon
+                                        use(xlink:href="img/icons/symbol/sprite.svg#link")
+                                    .works__link-text Посмотреть сайт
+                        .works__example
+                            .works__photo
+                                img(src="").works__img.js-slide-img
+                        .works__btns        
+                            button(type="button").works__btn.works__btn--next.js-btn-next
+                                img(src="").works__img.works__img--btn.js-slide-next
+                                svg.works__btn-icon
+                                    use(xlink:href="img/icons/symbol/sprite.svg#portf_arrow_down")
+                            button(type="button").works__btn.works__btn--prev.js-btn-prev
+                                img(src="").works__img.works__img--btn.js-slide-prev
+                                svg.works__btn-icon
+                                    use(xlink:href="img/icons/symbol/sprite.svg#portf_arrow_up")
+            section.section.comments.js-blur-bg
+                .title__wrapper.title__wrapper--comments
+                    h1.title.title--comments Что обо мне говорят
+                    svg.title__bg.title__bg--comments
+                        use(xlink:href="img/icons/symbol/sprite.svg#about_header")
+                ul.comments__list
+                    each item in commentsList
+                        li.comments__item
+                            .comments__text
+                                p #{item.comment}
+                            .comments__photo
+                                img(src=`${item.img}`).comments__img
+                            .comments__person
+                                .comments__person--name #{item.person}
+                                .comments__person--occupation #{item.occupation}
+                .contact-form__wrapper.js-blur-wrapper
+                    .contact-form__blur.js-blur-form
+                    .contact-form
+                        .subtitle.subtitle--contactform Связаться со мной
+                        if (msg)
+                            .contact-form__status(style="position: absolute; background-color: #fff; padding: 10px; border-radius: 4px; bottom: 1.5%; z-index: 300; border: 1px solid #ccc;")= msg
+                        form(action="/contact" method="POST" enctype="application/x-www-form-urlencoded").form#form.form--contacts
+                            input.form__input(type="text" placeholder="Имя" name="name" required)
+                            input.form__input(type="email" placeholder="Email" name="email" required)
+                            textarea.form__input.form__input--textarea(type="text" placeholder="Ваше сообщение" name="message" required)
+                            .form__buttons
+                                button.form__button.form__button--submit(type="submit" name="submit") Отправить
+                                button.form__button.form__button--reset(type="reset" name="reset") Очистить
+                button.comments__btn-arrow.js-comments-btn(type="button")
+                    svg.comments__arrow-up
+                        use(xlink:href="img/icons/symbol/sprite.svg#portf_arrow_up")
+
+        include ../common/footer.pug

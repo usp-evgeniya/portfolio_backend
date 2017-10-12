@@ -1,0 +1,39 @@
+extends ../template
+
+block variables
+    include ../common/variables.pug
+
+
+block content
+    .wrapper
+        include ../common/header.pug
+        main.main.main--blog
+            section.section.hero.hero--blog
+                .hero__bg.js-bg-hero
+                    img(src="img/bg/bg_header.jpg").hero__bg-img
+                .hero__content.hero__content--blog.js-hero-content
+                    .hero__owner.owner
+                        .owner__photo
+                            img(src="img/content/My_image.jpg").owner__img
+                        .title__wrapper
+                            h1.title.title--blog Блог
+                            svg.title__bg.title__bg--blog.js-bg-title
+                                use(xlink:href="img/icons/symbol/sprite.svg#blog_header")
+                        .hero__description Статьи, которые я написала
+            svg.triangles.triangles--blog(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 108" preserveaspectratio="none")
+                polygon.triangle__left(points="0,0 0,108 601,108 601,105")
+                polygon.triangle__right(points="1200,0 1200,108 599,108 599,105")
+            nav.blog__sidebar.js-blog-sidebar
+                ul.blog__list
+                    each article in articlesList
+                        li.blog__item.js-sidebar-article #{article.title}
+            section.articles.js-section-articles
+                ul.articles__list.js-articles-list
+                    each item in articlesList
+                        li.articles__item.js-article
+                            acticle.articles__content
+                                h2.subtitle.subtitle--articles #{item.title}
+                                .articles__date #{item.date}
+                                .articles__text
+                                    p #{item.text}
+        include ../common/footer.pug

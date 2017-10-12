@@ -1,0 +1,7 @@
+
+include ../common/variables.pug
+
+ul.menu__list
+    each item in menuItems
+        li.menu__item
+            a(href=`${item.link}`).menu__link #{item.title}

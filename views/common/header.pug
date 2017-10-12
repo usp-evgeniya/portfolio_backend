@@ -1,0 +1,18 @@
+include ../common/variables.pug
+
+header.header
+    .header__container
+        .socials.socials--header
+            include ../common/socials.pug
+        .hamburger.js-hamburger
+            button(type="button").hamburger__btn.js-hamburger__btn
+                svg.hamburger__icon.hamburger__icon--open
+                    use(xlink:href="img/icons/symbol/sprite.svg#hamburger")
+                svg.hamburger__icon.hamburger__icon--close
+                    use(xlink:href="img/icons/symbol/sprite.svg#close")
+            nav.hamburger__menu.js-hamburger__menu
+                ul.hamburger__list
+                    each item in menuItemsHeader
+                        li.hamburger__item
+                            a(href=`${item.link}` class=`.hamburger__link--${item.mod}`).hamburger__link.title #{item.title}
+

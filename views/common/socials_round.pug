@@ -1,0 +1,12 @@
+
+include ../common/variables.pug
+
+ul.socials__list
+    each item in socialsItems
+        li.socials__item
+            a(href=`${item[1]}` class=`socials__link--${item[0]}`).socials__link
+                .socials__icon-wrapper
+                    svg.socials__icon.socials__icon--flat
+                        use(xlink:href=`img/icons/symbol/sprite.svg#${item[2]}`)
+                svg.socials__icon.socials__icon--round
+                    use(xlink:href=`img/icons/symbol/sprite.svg#${item[2]}_round`)

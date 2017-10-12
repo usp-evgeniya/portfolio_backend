@@ -1,0 +1,57 @@
+extends ../template
+
+block variables
+    include ../common/variables.pug
+
+block content
+    .wrapper.admin
+        header.admin__header
+            .admin__header-panel
+                .container
+                    .admin__title Панель администрирования
+                    a.admin__link-back(href="./index.html") Вернуться на сайт
+            nav.admin__header-tabs
+                ul.admin__tabs-list
+                    each item in menuItemsAdmin
+                        li.admin__tabs-item.js-tab #{item.mod}
+        section.admin__content.admin__content--about.js-section.active
+            .admin__content-container.container
+                .admin__content-title Страница «Обо мне»
+                .admin__content-block
+                    ul.admin__skills-groups
+                        each item in skillsList
+                            li.admin__skills-group
+                                .admin__subtitle.admin__subtitle--skills #{item.skillsGroup}
+                                table.admin__skills-details
+                                    each skill in item.skills
+                                        tr.admin__skill-row
+                                            td.admin__skill-name #{skill[0]}
+                                            td.admin__skill-value 
+                                                input.admin__skill-input(type="number" placeholder=`${skill[1]}` name="login" required)
+                                            td.admin__skill-percent %
+                    img.admin__img
+                    button.admin__button.admin__skills-btn(type="submit" name="save") Сохранить
+        section.admin__content.admin__content--blog.js-section
+            .admin__content-container.container
+                .admin__content-title Страница «Блог»
+                .admin__content-block
+                        .admin__subtitle.admin__subtitle--blog Добавить запись
+                        form(method="post").form.form--admin
+                            input.form__input.form__input--admin(type="text" placeholder="Название" name="article" required)
+                            input.form__input.form__input--admin(type="text" placeholder="Дата" name="date")
+                            textarea.form__input.form__input--admtextarea(type="text" placeholder="Содержание" name="content")
+                            button.admin__button.admin__button--blog(type="submit" name="save") Добавить
+        section.admin__content.admin__content--works.js-section
+            .admin__content-container.container
+                .admin__content-title Страница «Мои работы»
+                .admin__content-block
+                        .admin__subtitle.admin__subtitle--blog Добавить работу
+                        form(method="post").form.form--admin
+                            input.form__input.form__input--admin(type="text" placeholder="Название проекта" name="project" required)
+                            input.form__input.form__input--admin(type="text" placeholder="Технологии" name="techs")
+                            button.admin__btn-addwork(type="submit" name="save")
+                                svg.admin__btn-icon
+                                    use(xlink:href="img/icons/symbol/sprite.svg#admin_img")
+                                .admin__btn-text Загрузить картинку
+                            button.admin__button.admin__button--works(type="submit" name="save") Добавить
+
