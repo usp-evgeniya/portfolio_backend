@@ -16,14 +16,10 @@ module.exports.sendEmail = function(req, res) {
     const transporter = nodemailer.createTransport(config.mail.smtp);
 
     const mailOptions = {
-        from: `"${req.body.name}" <${req.body.email}>`,
+        from: `"Администратор сайта-портфолио" <usp-evgeniya@yandex.ru>`,
         to: config.mail.smtp.auth.user,
         subject: config.mail.subject,
-        text: req
-            .body
-            .message
-            .trim()
-            .slice(0, 500) + `\n Отправлено с: <${req.body.email}>`
+        text: ` Пожалуйста, свяжитесь со мной! \n\n Имя: "${req.body.name}",\n e-mail: <${req.body.email}>,\n сообщение: "${req.body.message.trim()}"`
     };
 
     transporter.verify(function(error, success) {

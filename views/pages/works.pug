@@ -57,8 +57,6 @@ block content
                     .contact-form__blur.js-blur-form
                     .contact-form
                         .subtitle.subtitle--contactform Связаться со мной
-                        if (msg)
-                            .contact-form__status(style="position: absolute; background-color: #fff; padding: 10px; border-radius: 4px; bottom: 1.5%; z-index: 300; border: 1px solid #ccc;")= msg
                         form(action="/contact" method="POST" enctype="application/x-www-form-urlencoded").form#form.form--contacts
                             input.form__input(type="text" placeholder="Имя" name="name" required)
                             input.form__input(type="email" placeholder="Email" name="email" required)
@@ -66,6 +64,9 @@ block content
                             .form__buttons
                                 button.form__button.form__button--submit(type="submit" name="submit") Отправить
                                 button.form__button.form__button--reset(type="reset" name="reset") Очистить
+                    if (msg)
+                        .contact-form__status.js-contact-status.show= msg
+                            button.contact-form__status-btn.js-close(type="button" name="close") Закрыть
                 button.comments__btn-arrow.js-comments-btn(type="button")
                     svg.comments__arrow-up
                         use(xlink:href="img/icons/symbol/sprite.svg#portf_arrow_up")
