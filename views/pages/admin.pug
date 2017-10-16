@@ -9,7 +9,7 @@ block content
             .admin__header-panel
                 .container
                     .admin__title Панель администрирования
-                    a.admin__link-back(href="./index.html") Вернуться на сайт
+                    a.admin__link-back(href="./index") Вернуться на сайт
             nav.admin__header-tabs
                 ul.admin__tabs-list
                     each item in menuItemsAdmin
@@ -34,23 +34,27 @@ block content
             .admin__content-container.container
                 .admin__content-title Страница «Блог»
                 .admin__content-block
-                        .admin__subtitle.admin__subtitle--blog Добавить запись
-                        form(method="post").form.form--admin
-                            input.form__input.form__input--admin(type="text" placeholder="Название" name="article" required)
-                            input.form__input.form__input--admin(type="text" placeholder="Дата" name="date")
-                            textarea.form__input.form__input--admtextarea(type="text" placeholder="Содержание" name="content")
-                            button.admin__button.admin__button--blog(type="submit" name="save") Добавить
+                    .admin__subtitle.admin__subtitle--blog Добавить запись
+                    form(method="post").form.form--admin
+                        input.form__input.form__input--admin(type="text" placeholder="Название" name="article" required)
+                        input.form__input.form__input--admin(type="text" placeholder="Дата" name="date")
+                        textarea.form__input.form__input--admtextarea(type="text" placeholder="Содержание" name="content")
+                        button.admin__button.admin__button--blog(type="submit" name="save") Добавить
         section.admin__content.admin__content--works.js-section
             .admin__content-container.container
                 .admin__content-title Страница «Мои работы»
                 .admin__content-block
-                        .admin__subtitle.admin__subtitle--blog Добавить работу
-                        form(method="post").form.form--admin
-                            input.form__input.form__input--admin(type="text" placeholder="Название проекта" name="project" required)
-                            input.form__input.form__input--admin(type="text" placeholder="Технологии" name="techs")
-                            button.admin__btn-addwork(type="submit" name="save")
-                                svg.admin__btn-icon
-                                    use(xlink:href="img/icons/symbol/sprite.svg#admin_img")
-                                .admin__btn-text Загрузить картинку
-                            button.admin__button.admin__button--works(type="submit" name="save") Добавить
+                    .admin__subtitle.admin__subtitle--blog Добавить работу
+                    form(action="/admin/img_load" method="post" enctype="multipart/form-data").form.form--admin
+                        input.form__input.form__input--admin(type="text" placeholder="Название проекта" name="project" required)
+                        input.form__input.form__input--admin(type="text" placeholder="Технологии" name="techs" required)
+                        input(name="photo" type="file" required accept="image/*").form__input
+                        button.admin__btn-addwork(type="submit" name="upload")
+                            svg.admin__btn-icon
+                                use(xlink:href="img/icons/symbol/sprite.svg#admin_img")
+                            .admin__btn-text Загрузить картинку
+                        button.admin__button.admin__button--works(type="submit" name="save") Добавить
+                    if (msgFile)
+                        .contact-form__status.js-contact-status.show= msgFile
+                            button.contact-form__status-btn.js-close(type="button" name="close") Закрыть
 

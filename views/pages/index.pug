@@ -27,7 +27,7 @@ block content
                                     a(href=`${item.link}`).menu__link #{item.title}
             section.auth
                 .auth-form
-                    form(action="server.php" method="post").form#form
+                    form(action="/login" method="post" enctype="application/x-www-form-urlencoded").form#auth
                         .form__inputs
                             .form__subtitle.subtitle Авторизуйтесь
                             label.form__label
@@ -41,7 +41,7 @@ block content
                                     svg.form__icon
                                         use(xlink:href="img/icons/symbol/sprite.svg#password")
                             label.form__label.form__label--checkbox
-                                input.form__checkbox(type="checkbox" name="captcha")
+                                input.form__checkbox(type="checkbox" name="captcha" checked)
                                 span.form__checkbox-fake
                                     svg.form__checkbox-icon
                                         use(xlink:href="img/icons/symbol/sprite.svg#check")
@@ -58,7 +58,10 @@ block content
                                     span.form__caption.form__caption--radio Не уверен
                         .form__buttons
                             button.form__button.form__button--home.js-btn-home(type="button" name="home") На главную
-                            button.form__button.form__button--auth(type="button" name="auth-btn") Войти
+                            button.form__button.form__button--auth(type="submit" name="auth-btn") Войти
+                if (msg)
+                    .contact-form__status.js-contact-status.show= msg
+                        button.contact-form__status-btn.js-close(type="button" name="close") Закрыть
         button(type="button").intro__btn-auth.js-btn-auth Авторизоваться
         .copyright.container
             .copyright_text.intro__copyright &#169; Евгения Морозова | Создано с любовью в LoftSchool | 2017
