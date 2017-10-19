@@ -35,11 +35,20 @@ block content
                 .admin__content-title Страница «Блог»
                 .admin__content-block
                     .admin__subtitle.admin__subtitle--blog Добавить запись
-                    form(method="post").form.form--admin
-                        input.form__input.form__input--admin(type="text" placeholder="Название" name="article" required)
-                        input.form__input.form__input--admin(type="text" placeholder="Дата" name="date")
-                        textarea.form__input.form__input--admtextarea(type="text" placeholder="Содержание" name="content")
+                    form(action="/admin/blog" method="post" enctype="application/x-www-form-urlencoded").form.form--admin
+                        input.form__input.form__input--admin(type="text" placeholder="Название" name="title" required)
+                        - 
+                            var postDate = new Date().toLocaleDateString('ru', {
+                                day: '2-digit',
+                                month: '2-digit', 
+                                year: 'numeric', 
+                            })
+                        input.form__input.form__input--admin(type="date" placeholder="Дата" name="date")
+                        textarea.form__input.form__input--admtextarea(type="text" placeholder="Содержание" name="text")
                         button.admin__button.admin__button--blog(type="submit" name="save") Добавить
+                    if (msgBlog)
+                        .contact-form__status.js-contact-status.show= msgBlog
+                            button.contact-form__status-btn.js-close(type="button" name="close") Закрыть
         section.admin__content.admin__content--works.js-section
             .admin__content-container.container
                 .admin__content-title Страница «Мои работы»

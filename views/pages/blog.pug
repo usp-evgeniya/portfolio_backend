@@ -25,11 +25,11 @@ block content
                 polygon.triangle__right(points="1200,0 1200,108 599,108 599,105")
             nav.blog__sidebar.js-blog-sidebar
                 ul.blog__list
-                    each article in articlesList
+                    each article in articles
                         li.blog__item.js-sidebar-article #{article.title}
             section.articles.js-section-articles
                 ul.articles__list.js-articles-list
-                    each item in articlesList
+                    each item in articles
                         li.articles__item.js-article
                             acticle.articles__content
                                 h2.subtitle.subtitle--articles #{item.title}

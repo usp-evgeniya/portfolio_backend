@@ -20,6 +20,7 @@ router.get('/about', ctrlAbout.getAbout);
 
 router.get('/admin', ctrlAdmin.getAdmin);
 router.post('/admin/img_load', ctrlAdmin.imgLoad);
+router.post('/admin/blog', ctrlAdmin.addArticle);
 
 router.get('/index', ctrlAuth.getAuth);
 router.post('/login', ctrlAuth.authorization);
